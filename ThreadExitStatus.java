@@ -7,7 +7,6 @@ public class ThreadExitStatus {
 
         System.out.println("Enter exit status for each task (0 for Success, 1 for Failure, 2 for Cancel):");
 
-        // Get user inputs for each thread
         System.out.print("Exit status for Task 1: ");
         int status1 = scanner.nextInt();
 
@@ -17,7 +16,6 @@ public class ThreadExitStatus {
         System.out.print("Exit status for Task 3: ");
         int status3 = scanner.nextInt();
 
-        // Create and start the threads with the provided exit statuses
         MyThread thread1 = new MyThread(1, status1);
         MyThread thread2 = new MyThread(2, status2);
         MyThread thread3 = new MyThread(3, status3);
@@ -26,7 +24,6 @@ public class ThreadExitStatus {
         thread2.start();
         thread3.start();
 
-        // Wait for threads to finish and display their exit statuses
         try {
             thread1.join();
             System.out.println("Task 1 completed with status: " + thread1.getStatusMessage());
@@ -41,7 +38,6 @@ public class ThreadExitStatus {
         }
     }
 
-    // Custom thread class
     static class MyThread extends Thread {
         private final int taskId;
         private final int userStatus;
@@ -56,7 +52,6 @@ public class ThreadExitStatus {
         public void run() {
             System.out.println("Task " + taskId + " is running...");
 
-            // Use switch-case to determine the exit status based on user input
             switch (userStatus) {
                 case 0:
                     exitStatusMessage = "Success";
@@ -76,7 +71,6 @@ public class ThreadExitStatus {
             }
         }
 
-        // Method to get the status message after thread completion
         public String getStatusMessage() {
             return exitStatusMessage;
         }
